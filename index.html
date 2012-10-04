@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Workout - Log de Exercício</title>
+	<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="javascripts/underscore.min.js"></script>
+	<script type="text/javascript" src="javascripts/functions.js"></script>
+	<script type="text/javascript" src="javascripts/backbone.min.js"></script>
+	<script type="text/javascript" src="javascripts/backbone.localstorage.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+
+	<div id="app">
+		
+		<div id="wrap">
+
+			<header>
+				<h1>Log de Exercício</h1>
+			</header>
+
+			<form action="#" id="new-activity">
+
+				<fieldset>
+
+					<legend>Adicionar Atividade</legend>
+
+					<ul>
+						<li>
+							<label for="time">Tempo</label>
+							<input type="text" name="time" id="time">
+						</li>
+						<li>
+							<label for="exercise">Exercício</label>
+							<select name="exercise" id="exercise">
+								<option value="caminhada">Caminhada</option>
+								<option value="corrida">Corrida</option>
+								<option value="bicicleta">Bicicleta</option>
+								<option value="natacao">Natação</option>
+								<option value="tenis">Tênis</option>
+							</select>
+						</li>
+						<li>
+							<label for="date">Data</label>
+							<input type="text" name="date" id="date">
+						</li>
+						<li>
+							<input type="submit" value="Adicionar">
+						</li>
+					</ul>
+
+				</fieldset>
+
+			</form>
+
+			<table id="activities">
+				<thead>
+					<tr>
+						<th>Tempo</th>
+						<th>Atividade</th>
+						<th>Data</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+
+		</div>
+	
+	</div>
+
+	<script type="text/html" id="list-template">
+
+		<% for(var i in activities) { %>
+
+		<tr>
+			<td><%= activities[i].time %></td>
+			<td><%= activities[i].exercise %></td>
+			<td><%= activities[i].date %></td>
+		</tr>
+
+		<% } %>
+
+	</script>
+
+</body>
+</html>

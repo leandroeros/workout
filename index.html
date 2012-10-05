@@ -71,19 +71,56 @@
 	
 	</div>
 
-	<script type="text/html" id="list-template">
+	<script type="text/template" id="activitiesTemplate">
 
-		<% for(var i in activities) { %>
+		<% for(var i in data) { var activity = data[i] %>
 
 		<tr>
-			<td><%= activities[i].time %></td>
-			<td><%= activities[i].exercise %></td>
-			<td><%= activities[i].date %></td>
+			<td><%= activity.time %></td>
+			<td><%= activity.exercise %></td>
+			<td><%= activity.date %></td>
+			<td><a href="#" data-id="<%= activity.id %>" class="delete-activity">Excluir</a></td>
 		</tr>
 
 		<% } %>
 
 	</script>
+
+	<style type="text/css">
+
+		body {
+			font: normal 12px "Arial", sans-serif;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		label {
+			margin-top: 10px;
+			display: block;
+		}
+
+		#activities, fieldset {
+			border: 1px solid #CCC;
+			margin: 10px; 
+			width: 500px;
+		}
+
+		#activities {
+			width: 520px;
+		}
+
+		#activities th {
+			width: 20%;
+		}
+
+		#activities td {
+			border: 1px solid #CCC;
+			padding: 5px;
+		}
+
+	</style>
 
 </body>
 </html>

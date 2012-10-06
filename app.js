@@ -11,67 +11,36 @@ $(function () {
 		},
 
 		clear: function() {
-			this.model.clear();
+			this.destroy();
 		}
 	});
 
 	var ActivityList = Backbone.Collection.extend({
-		
-		// Referência o Model.
+
 		model: Activity,
 
-		// Salva em LocalStorage
 		localStorage: new Store("backbone-activities"),
 
 	});
 
 	var Activities = new ActivityList;
 
-	// var list = Activities.create({
-	// 	time: 60,
-	// 	exercise: "Basquete",
-	// 	date: "04/10/2012"
-	// })
-
-	// ** Coleção Sample **
-
-	// var Activities = new Backbone.Collection;
-
-	// 	//model: Activity,
-
 	// Activities.on("add", function(Activity) {
 	// 	console.info("Você precisa praticar " + Activity.get("exercise") + "!");
-	// });
-
-	// Activities.add([
-	// 	{exercise: "Natação"},
-	// 	{exercise: "Basquete"},
-	// ]);
-
-	//localStorage: new Store("app-activity")
-
-	// var App = Backbone.Model.extend({
-
-	// 	defaults: function() {
-
-	// 	},
-
-	// 	initialize: function() {
-			
-	// 	}
 	// });
 
 	var AppView = Backbone.View.extend({
 
 		el: $('#app'),
 
-		// Eventos em um view.
 		events: {
 			"submit #new-activity": "registerActivity",
 			"click .delete-activity": "deleteActivity"
 		},
 
-		template: _.template($("#activitiesTemplate").html()),
+		activitiesTemplate: _.template($("#activitiesTemplate").html()),
+
+		totalTemplate: _.template($("#totalTemplate").html()),
 
 		initialize: function() {
 
@@ -81,11 +50,12 @@ $(function () {
 			Activities.fetch();
 
 			// Exibindo conteúdo do sessão atual.
-			this.$el.find("#activities tbody").html( this.template( {data: Activities.toJSON()} ) );
+			this.$el.find("#activities tbody").html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
+
+			this.totalActivities();
 
 		},
 
-		// Método relacionado a um evento (submit)
 		registerActivity: function(e) {
 			e.preventDefault();
 
@@ -94,25 +64,37 @@ $(function () {
 
 			Activities.create(data);
 
-			this.$el.find("#activities tbody").html( this.template( {data: Activities.toJSON()} ) );
+			this.$el.find("#activities tbody").html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
 
 			console.info("Atividade Registrada!")
+		
 		},
 
 		deleteActivity: function(e) {
 			e.preventDefault();
 
-			$(this.el).delegate(".delete-activity", "click", function() {
+			// Obtem id a partir do atributo do elemento da pagina.
+			var id = $(e.target).data("id");
 
-				id = $(this).attr("data-id");
+			// Exclui da coleção e do LocalStorage.
+			( Activities.get( id ) ).clear();
 
-				console.info(id);
+			this.$el.find("#activities tbody").html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
 
-				Activities.remove(id);
+			this.totalActivities();
 
-				this.$el.find("#activities tbody").html( this.template( {data: Activities.toJSON()} ) );
-			})
+		},
 
+		totalActivities: function() {
+
+			// Somando os minutos de cada atividade registrada.
+			var sum = _.reduce(Activities.pluck("time"), function(memo, time) {
+				return  memo + parseInt(time); 
+			}, 0);
+
+			console.info( sum );
+
+			this.$el.find("#total-activities h2").html( this.totalTemplate( {total: sum + " minutos"} ) );
 		}
 
 	});

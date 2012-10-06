@@ -8,65 +8,79 @@
 	<script type="text/javascript" src="javascripts/functions.js"></script>
 	<script type="text/javascript" src="javascripts/backbone.min.js"></script>
 	<script type="text/javascript" src="javascripts/backbone.localstorage.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.masked.js"></script>
 
 	<script type="text/javascript" src="app.js"></script>
+
+	<link rel="stylesheet" href="stylesheets/styles.css">
+
 </head>
 <body>
 
 	<div id="app">
-		
-		<div id="wrap">
 
-			<header>
-				<h1>Log de Exercício</h1>
-			</header>
+		<div id="wrapper">
+			
+			<div id="wrap">
 
-			<form action="#" id="new-activity">
+				<header>
+					<h1>Log de Exercício</h1>
+				</header>
 
-				<fieldset>
+				<form action="#" id="new-activity">
 
-					<legend>Adicionar Atividade</legend>
+					<fieldset>
 
-					<ul>
-						<li>
-							<label for="time">Tempo</label>
-							<input type="text" name="time" id="time">
-						</li>
-						<li>
-							<label for="exercise">Exercício</label>
-							<select name="exercise" id="exercise">
-								<option value="caminhada">Caminhada</option>
-								<option value="corrida">Corrida</option>
-								<option value="bicicleta">Bicicleta</option>
-								<option value="natacao">Natação</option>
-								<option value="tenis">Tênis</option>
-							</select>
-						</li>
-						<li>
-							<label for="date">Data</label>
-							<input type="text" name="date" id="date">
-						</li>
-						<li>
-							<input type="submit" value="Adicionar">
-						</li>
-					</ul>
+						<legend>Adicionar Atividade</legend>
 
-				</fieldset>
+						<ul>
+							<li>
+								<label for="time">Tempo</label>
+								<input type="text" name="time" id="time" placeholder="min">
+							</li>
+							<li>
+								<label for="exercise">Exercício</label>
+								<select name="exercise" id="exercise">
+									<option value="Caminhada">Caminhada</option>
+									<option value="Corrida">Corrida</option>
+									<option value="Bicicleta">Bicicleta</option>
+									<option value="Natação">Natação</option>
+									<option value="Tênis">Tênis</option>
+								</select>
+							</li>
+							<li>
+								<label for="date">Data</label>
+								<input type="text" name="date" id="date">
+							</li>
+							<li>
+								<input type="submit" value="Adicionar" class="btn btn-primary">
+							</li>
+						</ul>
 
-			</form>
+					</fieldset>
 
-			<table id="activities">
-				<thead>
-					<tr>
-						<th>Tempo</th>
-						<th>Atividade</th>
-						<th>Data</th>
-						<th>Ações</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+				</form>
 
+				<table id="activities">
+					<thead>
+						<tr>
+							<th>Tempo</th>
+							<th>Atividade</th>
+							<th>Data</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+
+				<footer id="total-activities">
+					
+					<h2>Você não fez nenhuma atividade ainda!</h2>
+
+				</footer>
+
+			</div>
+	
 		</div>
 	
 	</div>
@@ -76,51 +90,21 @@
 		<% for(var i in data) { var activity = data[i] %>
 
 		<tr>
-			<td><%= activity.time %></td>
+			<td><%= activity.time %> <small>min</small></td>
 			<td><%= activity.exercise %></td>
 			<td><%= activity.date %></td>
-			<td><a href="#" data-id="<%= activity.id %>" class="delete-activity">Excluir</a></td>
+			<td><a href="#" data-id="<%= activity.id %>" class="delete-activity"><i>&times;</i> Excluir</a></td>
 		</tr>
 
 		<% } %>
 
 	</script>
 
-	<style type="text/css">
+	<script type="text/template" id="totalTemplate">
 
-		body {
-			font: normal 12px "Arial", sans-serif;
-		}
+		<h2>Você já fez <strong><%= total %></strong> entre todos os exercícios!</h2>
 
-		li {
-			list-style: none;
-		}
-
-		label {
-			margin-top: 10px;
-			display: block;
-		}
-
-		#activities, fieldset {
-			border: 1px solid #CCC;
-			margin: 10px; 
-			width: 500px;
-		}
-
-		#activities {
-			width: 520px;
-		}
-
-		#activities th {
-			width: 20%;
-		}
-
-		#activities td {
-			border: 1px solid #CCC;
-			padding: 5px;
-		}
-
-	</style>
+	</script>
 
 </body>
 </html>

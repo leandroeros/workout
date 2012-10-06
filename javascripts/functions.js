@@ -31,3 +31,8 @@ jQuery.fn.serializeObject = function() {
 	return objectData;
 
 };
+
+$(function() {
+
+	$("#date").mask("99/99/9999");
+});

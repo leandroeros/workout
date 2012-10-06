@@ -1,0 +1,215 @@
+@import url(reset.css);
+
+body {
+	background: url(../images/asfalt/asfalt.png);
+	color: #777;
+	font: normal 12px "Helvetica Neue", "Arial", sans-serif;
+}
+
+li {
+	list-style: none;
+	display: inline-block;
+}
+
+.icon-delete {
+	background: url(../images/icon-delete.png);
+	display: inline-block;
+	height: 11px;
+	vertical-align: middle;
+	width: 11px;
+	margin-bottom: .15em;
+}
+
+#wrapper {
+	background: rgba(0,0,0,0.4);
+	border-radius: 5px;
+	left: 50%;
+	margin-top: 50px;
+	margin-left: -238px;
+	padding: 8px;
+	position: absolute;
+}
+
+#wrap {
+	border-radius: 3px;
+	background: #FFF;
+	max-width: 460px;
+	box-shadow: 0 3px 5px rgba(0,0,0,1);
+	/*box-shadow: 0 3px 5px rgba(0,0,0,.6), -8px -3px 15px orange, 8px -3px 15px green, 0 3px 55px rgba(255,0,0,.7);*/
+}
+
+#wrap header {
+	border-radius: 3px 3px 0 0;
+	box-shadow: 0 -1px 0 #F5F5F5 inset, 0 1px 1px rgba(0,0,0,.05);
+	border-bottom: 1px solid #BABABA;
+	background: -webkit-linear-gradient(top, #FAFAFA, #E9E9E9);
+	display: block;
+	padding: 14px;
+	text-shadow: 0 1px 0 white;
+}
+
+#wrap header h1 {
+	display: block;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Tabela com as atividades registradas. */
+
+#activities {
+	border-top: 4px solid #83AD43;
+	border-bottom: 1px solid #CCC;
+	box-shadow: 0 1px 0 #CCC inset, 0 2px 0 white inset;
+	width: 100%;
+}
+
+#activities thead {
+	background: -webkit-linear-gradient(top, #F2F3F8, #E4E7EE);
+	margin-top: 1px;
+	padding: 15px;
+}
+
+#activities th {
+	border-left: 1px solid #DDD;
+	border-right: 1px solid #FEFEFE;
+	color: #656870;
+	font-weight: bold;
+	padding: 8px;
+	text-align: center;
+	text-shadow: 0 1px 0 white;
+}
+
+#activities tbody tr {
+	background: #F5F6FA;
+	border-bottom: 1px solid #CCC;
+}
+ 
+#activities tbody tr:nth-child(odd) {
+	background: #FFF;
+}
+ 
+#activities tbody tr:hover td {
+	box-shadow: 0 1px 0 white inset;
+	border-top: 1px solid #CED8C0;
+	background: -webkit-linear-gradient(top, #EDF7EC, #E7F2E2);
+	text-shadow: 0 1px 0 white;
+}
+
+#activities td {
+	border-top: 1px solid #D6DADD;
+	box-shadow: 0 1px 0 white inset;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 10px 0;
+	text-align: center;
+}
+
+#activities small {
+	color: #CCC;
+	font-size: 10px;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.delete-activity {
+	color: red;
+	font-weight: bold;
+	text-decoration: none;
+	display: inline-block;
+	padding: 1px 5px 1px 3px; 
+}
+
+.delete-activity i {
+	display: inline-block;
+	font-size: 16px;
+	margin-bottom: .1em;
+	vertical-align: middle;
+}
+
+.delete-activity:hover {
+	background: red;
+	color: white;
+	opacity: .5;
+	text-shadow: none;
+}
+
+/* Total */
+
+#total-activities {
+	padding: 20px;
+}
+
+#total-activities h2 {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#total-activities h2 strong {
+	color: #83AD43;
+	border-bottom: 1px solid #83AD43;
+}
+
+/* Form - Adicionar Nova Atividade */
+
+fieldset {
+	margin: 15px 10px;
+	padding: 10px;
+	border: 1px solid #CCC;
+}
+
+legend {
+	padding: 5px;
+	font-weight: bold;
+}
+
+label {
+	display: block;
+	font-size: 11px;
+	margin-left: 2px;
+}
+
+input[type=text] {
+	color: #585858;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 10px;
+	padding: 5px;
+	text-align: center;
+}
+
+select {
+	color: #585858;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 10px;
+	padding: 5px;
+	text-align: center;
+}
+
+#time {
+	width: 40px;
+}
+
+#date {
+	width: 100px;
+}
+
+.btn {
+	border: 1px solid #CCC;
+	background: #EEE;
+	padding: 9px;
+	font-size: 14px;
+	font-weight: bold;
+	width: 85px;
+	text-shadow: 0 1px 0 rgba(255,255,255,.4);
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.btn-primary {
+	background: -webkit-linear-gradient(top, #B9D972, #A1CC59);
+	color: #5D7731;
+	border: 1px solid #5D7731;
+}

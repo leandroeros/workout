@@ -1,14 +1,10 @@
 $(function () {
 
-	console.info("Carregando script...");
+	console.info('Carregando script...');
 
 	var Exercise = Backbone.Model.extend({});
 
 	var Activity = Backbone.Model.extend({
-
-		initialize: function() {
-			//console.info("Iniciando uma nova atividade...");
-		},
 
 		clear: function() {
 			this.destroy();
@@ -19,38 +15,33 @@ $(function () {
 
 		model: Activity,
 
-		localStorage: new Store("backbone-activities"),
+		localStorage: new Store('workout-activities'),
 
 	});
 
 	var Activities = new ActivityList;
 
-	// Activities.on("add", function(Activity) {
-	// 	console.info("Você precisa praticar " + Activity.get("exercise") + "!");
-	// });
-
 	var AppView = Backbone.View.extend({
 
 		el: $('#app'),
 
+		form: $('#new-activity'),
+
 		events: {
-			"submit #new-activity": "registerActivity",
-			"click .delete-activity": "deleteActivity"
+			'submit #new-activity': 'registerActivity',
+			'click .delete-activity': 'deleteActivity'
 		},
 
-		activitiesTemplate: _.template($("#activitiesTemplate").html()),
+		activitiesTemplate: _.template($('#activitiesTemplate').html()),
 
-		totalTemplate: _.template($("#totalTemplate").html()),
+		totalTemplate: _.template($('#totalTemplate').html()),
 
 		initialize: function() {
-
-			// Olhando para um atributo padrão.
-			// console.info( (new Activity).get("exercise") );
 
 			Activities.fetch();
 
 			// Exibindo conteúdo do sessão atual.
-			this.$el.find("#activities tbody").html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
+			$('#activities tbody').html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
 
 			this.totalActivities();
 
@@ -59,14 +50,21 @@ $(function () {
 		registerActivity: function(e) {
 			e.preventDefault();
 
-			// Serializa formulario em um objeto.
-			var data = $("#new-activity").serializeObject();
+			// Serializa formulário em um objeto.
+			var data = this.form.serializeObject();
 
 			Activities.create(data);
 
-			this.$el.find("#activities tbody").html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
+			Activities.fetch();
 
-			console.info("Atividade Registrada!")
+			$('#activities tbody').html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
+
+			// Limpando campos do formulário.
+			this.form.clearFields();
+			
+			$("input:text:first").focus();
+			
+			this.totalActivities();
 		
 		},
 
@@ -74,12 +72,14 @@ $(function () {
 			e.preventDefault();
 
 			// Obtem id a partir do atributo do elemento da pagina.
-			var id = $(e.target).data("id");
+			var id = $(e.target).data('id');
+
+			console.info(Activities.get( id ));
 
 			// Exclui da coleção e do LocalStorage.
 			( Activities.get( id ) ).clear();
 
-			this.$el.find("#activities tbody").html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
+			$('#activities tbody').html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
 
 			this.totalActivities();
 
@@ -88,13 +88,22 @@ $(function () {
 		totalActivities: function() {
 
 			// Somando os minutos de cada atividade registrada.
-			var sum = _.reduce(Activities.pluck("time"), function(memo, time) {
+			var sum = _.reduce(Activities.pluck('time'), function(memo, time) {
 				return  memo + parseInt(time); 
 			}, 0);
 
 			console.info( sum );
 
-			this.$el.find("#total-activities h2").html( this.totalTemplate( {total: sum + " minutos"} ) );
+			if( sum != 0 ) {
+
+				$('#total-activities h2').html( this.totalTemplate( {total: sum + ' minutos'} ) );
+
+			} else {
+
+				$('#total-activities h2').html('Você não fez nenhuma atividade ainda!');
+
+			}
+
 		}
 
 	});

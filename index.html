@@ -2,17 +2,20 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
+
 	<title>Workout - Log de Exercício</title>
+
+	<link rel="stylesheet" href="stylesheets/styles.css">
+
 	<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.validate.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.masked.js"></script>
 	<script type="text/javascript" src="javascripts/underscore.min.js"></script>
 	<script type="text/javascript" src="javascripts/functions.js"></script>
 	<script type="text/javascript" src="javascripts/backbone.min.js"></script>
 	<script type="text/javascript" src="javascripts/backbone.localstorage.js"></script>
-	<script type="text/javascript" src="javascripts/jquery.masked.js"></script>
 
 	<script type="text/javascript" src="app.js"></script>
-
-	<link rel="stylesheet" href="stylesheets/styles.css">
 
 </head>
 <body>
@@ -36,7 +39,7 @@
 						<ul>
 							<li>
 								<label for="time">Tempo</label>
-								<input type="text" name="time" id="time" placeholder="min">
+								<input type="text" name="time" id="time" placeholder="min" class="required" title="Obrigatório" min="1" maxlength="3">
 							</li>
 							<li>
 								<label for="exercise">Exercício</label>
@@ -58,6 +61,8 @@
 						</ul>
 
 					</fieldset>
+
+					<div id="message"></div>
 
 				</form>
 

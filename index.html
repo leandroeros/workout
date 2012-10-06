@@ -2,6 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 
 	<title>Workout - Log de Exercício</title>
 
@@ -30,7 +31,7 @@
 					<h1>Log de Exercício</h1>
 				</header>
 
-				<form action="#" id="new-activity">
+				<form action="#" id="new-activity" class="form">
 
 					<fieldset>
 
@@ -39,7 +40,7 @@
 						<ul>
 							<li>
 								<label for="time">Tempo</label>
-								<input type="text" name="time" id="time" placeholder="min" class="required" title="Obrigatório" min="1" maxlength="3">
+								<input type="text" pattern="[0-9]*" name="time" id="time" placeholder="min" class="required" title="Entre com o tempo da atividade." min="1" maxlength="3">
 							</li>
 							<li>
 								<label for="exercise">Exercício</label>
@@ -53,7 +54,7 @@
 							</li>
 							<li>
 								<label for="date">Data</label>
-								<input type="text" name="date" id="date">
+								<input type="text" pattern="[0-9]*" name="date" id="date" class="required" data="true" title="Entre com a data em que praticou o exercício.">
 							</li>
 							<li>
 								<input type="submit" value="Adicionar" class="btn btn-primary">

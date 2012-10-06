@@ -11,15 +11,6 @@ li {
 	display: inline-block;
 }
 
-.icon-delete {
-	background: url(../images/icon-delete.png);
-	display: inline-block;
-	height: 11px;
-	vertical-align: middle;
-	width: 11px;
-	margin-bottom: .15em;
-}
-
 #wrapper {
 	background: rgba(0,0,0,0.4);
 	border-radius: 5px;
@@ -33,8 +24,8 @@ li {
 #wrap {
 	border-radius: 3px;
 	background: #FFF;
-	max-width: 460px;
 	box-shadow: 0 3px 5px rgba(0,0,0,1);
+	width: 460px;
 	/*box-shadow: 0 3px 5px rgba(0,0,0,.6), -8px -3px 15px orange, 8px -3px 15px green, 0 3px 55px rgba(255,0,0,.7);*/
 }
 
@@ -43,6 +34,8 @@ li {
 	box-shadow: 0 -1px 0 #F5F5F5 inset, 0 1px 1px rgba(0,0,0,.05);
 	border-bottom: 1px solid #BABABA;
 	background: -webkit-linear-gradient(top, #FAFAFA, #E9E9E9);
+	background: -moz-linear-gradient(top, #FAFAFA, #E9E9E9);
+	background: linear-gradient(top, #FAFAFA, #E9E9E9);
 	display: block;
 	padding: 14px;
 	text-shadow: 0 1px 0 white;
@@ -55,7 +48,7 @@ li {
 	text-align: center;
 }
 
-/* Tabela com as atividades registradas. */
+/* Tabela com as atividades registradas */
 
 #activities {
 	border-top: 4px solid #83AD43;
@@ -66,6 +59,8 @@ li {
 
 #activities thead {
 	background: -webkit-linear-gradient(top, #F2F3F8, #E4E7EE);
+	background: -moz-linear-gradient(top, #F2F3F8, #E4E7EE);
+	background: linear-gradient(top, #F2F3F8, #E4E7EE);
 	margin-top: 1px;
 	padding: 15px;
 }
@@ -90,9 +85,11 @@ li {
 }
  
 #activities tbody tr:hover td {
-	box-shadow: 0 1px 0 white inset;
-	border-top: 1px solid #CED8C0;
 	background: -webkit-linear-gradient(top, #EDF7EC, #E7F2E2);
+	background: -moz-linear-gradient(top, #EDF7EC, #E7F2E2);
+	background: linear-gradient(top, #EDF7EC, #E7F2E2);
+	border-top: 1px solid #CED8C0;
+	box-shadow: 0 1px 0 white inset;
 	text-shadow: 0 1px 0 white;
 }
 
@@ -134,7 +131,22 @@ li {
 	text-shadow: none;
 }
 
-/* Total */
+/* Mensagens diversas */
+
+#message .error {
+	background: #FFE6E6;
+	border: 1px solid #F2C3BF;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
+	font-size: 12px;
+	font-weight: bold;
+	color: #BF210E;
+	display: block;
+	padding: 10px;
+	margin: 15px 10px;
+	text-shadow: 0 1px 0 white;
+}
+
+/* Total de tempo de exercício */
 
 #total-activities {
 	padding: 20px;
@@ -151,26 +163,26 @@ li {
 	border-bottom: 1px solid #83AD43;
 }
 
-/* Form - Adicionar Nova Atividade */
+/* Formulário */
 
-fieldset {
+.form fieldset {
 	margin: 15px 10px;
 	padding: 10px;
 	border: 1px solid #CCC;
 }
 
-legend {
+.form legend {
 	padding: 5px;
 	font-weight: bold;
 }
 
-label {
+.form label {
 	display: block;
 	font-size: 11px;
 	margin-left: 2px;
 }
 
-input[type=text] {
+.form input[type=text], input[type=number] {
 	color: #585858;
 	font-size: 16px;
 	font-weight: bold;
@@ -179,21 +191,13 @@ input[type=text] {
 	text-align: center;
 }
 
-select {
+.form select {
 	color: #585858;
 	font-size: 16px;
 	font-weight: bold;
 	margin-right: 10px;
 	padding: 5px;
 	text-align: center;
-}
-
-#time {
-	width: 40px;
-}
-
-#date {
-	width: 100px;
 }
 
 .btn {
@@ -210,6 +214,61 @@ select {
 
 .btn-primary {
 	background: -webkit-linear-gradient(top, #B9D972, #A1CC59);
+	background: -moz-linear-gradient(top, #B9D972, #A1CC59);
+	background: linear-gradient(top, #B9D972, #A1CC59);
 	color: #5D7731;
 	border: 1px solid #5D7731;
+}
+
+/* Formulário para adicionar nova atividade */
+
+#time {
+	width: 40px;
+}
+
+#date {
+	width: 100px;
+}
+
+/* Rensposive Layout para dispositivos móveis e plug-in para o Chrome (sim, é uma boa ideia) */
+
+@media screen and (max-width: 640px) {
+
+	#wrapper {
+		background: none;
+		border-radius: 0;
+		left: 0;
+		padding: 0;
+		margin-top: 0;
+		margin-left: 0;
+		position: relative;
+	}
+
+	#wrap {
+		border-radius: none;
+		background: #FFF;
+		box-shadow: none;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 400px) {
+
+	li {
+		list-style: none;
+		display: block;
+		margin-top: 10px;
+	}
+
+	input, select {
+		width: 100% !important;
+	}
+
+	select {
+		padding: 8px 0;
+	}
+
+	input[type=text], input[type=number] {
+		padding: 8px 0;
+	}
 }

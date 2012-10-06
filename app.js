@@ -110,4 +110,13 @@ $(function () {
 
 	var App = new AppView;
 
+	$("#date").mask("99/99/9999");
+
+	$("#new-activity").validate({
+		errorLabelContainer: "#message",
+		focusInvalid: false,
+		onfocusout: false,
+		onkeyup: false
+	});
+
 });

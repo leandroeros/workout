@@ -74,3 +74,16 @@ jQuery.validator.addMethod("data", function(value, element) {
 		return true;
 
 }, "Informe uma data válida");
+
+// When ready...
+window.addEventListener("load", function() {
+
+	// Set a timeout...
+	setTimeout(function() {
+
+		// Hide the address bar!
+		window.scrollTo(0, 1);
+
+	}, 0);
+
+});

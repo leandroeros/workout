@@ -1,7 +1,5 @@
 $(function () {
 
-	console.info('Carregando script...');
-
 	var Exercise = Backbone.Model.extend({});
 
 	var Activity = Backbone.Model.extend({
@@ -15,7 +13,7 @@ $(function () {
 
 		model: Activity,
 
-		localStorage: new Store('workout-activities'),
+		localStorage: new Store('workout-activities')
 
 	});
 
@@ -25,22 +23,19 @@ $(function () {
 
 		el: $('#app'),
 
-		form: $('#new-activity'),
-
 		events: {
 			'submit #new-activity': 'registerActivity',
 			'click .delete-activity': 'deleteActivity'
 		},
 
 		activitiesTemplate: _.template($('#activitiesTemplate').html()),
-
-		totalTemplate: _.template($('#totalTemplate').html()),
+		totalTemplate: 		_.template($('#totalTemplate').html()),
 
 		initialize: function() {
 
 			Activities.fetch();
 
-			// Exibindo conteúdo do sessão atual.
+			// Exibindo atividades salvas em LocalStorage na view.
 			$('#activities tbody').html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
 
 			this.totalActivities();
@@ -51,7 +46,7 @@ $(function () {
 			e.preventDefault();
 
 			// Serializa formulário em um objeto.
-			var data = this.form.serializeObject();
+			var data = $('#new-activity').serializeObject();
 
 			Activities.create(data);
 
@@ -60,7 +55,7 @@ $(function () {
 			$('#activities tbody').html( this.activitiesTemplate( {data: Activities.toJSON()} ) );
 
 			// Limpando campos do formulário.
-			this.form.clearFields();
+			$('#new-activity').clearFields();
 			
 			$("input:text:first").focus();
 			
@@ -95,13 +90,9 @@ $(function () {
 			console.info( sum );
 
 			if( sum != 0 ) {
-
 				$('#total-activities h2').html( this.totalTemplate( {total: sum + ' minutos'} ) );
-
 			} else {
-
 				$('#total-activities h2').html('Você não fez nenhuma atividade ainda!');
-
 			}
 
 		}

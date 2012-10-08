@@ -187,7 +187,7 @@ li {
 	font-size: 16px;
 	font-weight: bold;
 	margin-right: 10px;
-	padding: 5px;
+	padding: 5px 0;
 	text-align: center;
 }
 
@@ -260,12 +260,13 @@ li {
 		margin-top: 10px;
 	}
 
-	input, select {
+	input {
 		width: 100% !important;
 	}
 
 	select {
 		padding: 8px 0;
+		width: 101% !important;
 	}
 
 	input[type=text], input[type=number] {

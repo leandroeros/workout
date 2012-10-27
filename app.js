@@ -30,11 +30,16 @@ var AppView = Backbone.View.extend({
 
 		Activities.fetch();
 
+		this.render();
+
+	},
+
+	render: function() {
+
 		// Exibindo atividades salvas em LocalStorage na view.
 		$(this.el).find('#activities tbody').html( _.template($(this.el).find("#activitiesTemplate").html(), {data: Activities.toJSON()} ) );
 
 		this.totalActivities();
-
 	},
 
 	registerActivity: function(e) {
@@ -85,7 +90,7 @@ var AppView = Backbone.View.extend({
 		//console.info( sum );
 
 		if( sum != 0 ) {
-			//$(this.el).find('#total-activities h2').html( _.template( $(this.el).find('#totalTemplate').html(), {total: sum + ' minuto' + (sum > 1 ? "s" : "") } ) );
+			$(this.el).find('#total-activities h2').html( _.template( $(this.el).find('#totalTemplate').html(), {total: sum + ' minuto' + (sum > 1 ? "s" : "") } ) );
 		} else {
 			$(this.el).find('#total-activities h2').html('Você não fez nenhuma atividade ainda!');
 		}

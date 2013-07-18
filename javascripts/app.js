@@ -1,6 +1,3 @@
-
-var Exercise = Backbone.Model.extend({});
-
 var Activity = Backbone.Model.extend({
 
 	clear: function() {
@@ -31,12 +28,10 @@ var AppView = Backbone.View.extend({
 		Activities.fetch();
 
 		this.render();
-
 	},
 
 	render: function() {
 
-		// Exibindo atividades salvas em LocalStorage na view.
 		$(this.el).find('#activities tbody').html( _.template($(this.el).find("#activitiesTemplate").html(), {data: Activities.toJSON()} ) );
 
 		this.totalActivities();
@@ -60,7 +55,6 @@ var AppView = Backbone.View.extend({
 		$(this.el).find("input:text:first").focus();
 		
 		this.totalActivities();
-	
 	},
 
 	deleteActivity: function(e) {
@@ -69,15 +63,11 @@ var AppView = Backbone.View.extend({
 		// Obtem id a partir do atributo do elemento da pagina.
 		var id = $(e.target).data('id');
 
-		//console.info(Activities.get( id ));
-
-		// Exclui da coleção e do LocalStorage.
 		( Activities.get( id ) ).clear();
 
 		$(this.el).find('#activities tbody').html( _.template($(this.el).find('#activitiesTemplate').html(), {data: Activities.toJSON()} ) );
 
 		this.totalActivities();
-
 	},
 
 	totalActivities: function() {
@@ -87,27 +77,11 @@ var AppView = Backbone.View.extend({
 			return  memo + parseInt(time); 
 		}, 0);
 
-		//console.info( sum );
-
-		if( sum != 0 ) {
+		if( sum !== 0 ) {
 			$(this.el).find('#total-activities h2').html( _.template( $(this.el).find('#totalTemplate').html(), {total: sum + ' minuto' + (sum > 1 ? "s" : "") } ) );
 		} else {
 			$(this.el).find('#total-activities h2').html('Você não fez nenhuma atividade ainda!');
 		}
-
 	}
-
-});
-
-$(function () {
-
-	$("#date").mask("99/99/9999");
-
-	$("#new-activity").validate({
-		errorLabelContainer: "#message",
-		focusInvalid: false,
-		onfocusout: false,
-		onkeyup: false
-	});
 
 });

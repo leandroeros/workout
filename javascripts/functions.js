@@ -1,5 +1,4 @@
 // Limpa todos os campos de um formulario.
-
 jQuery.fn.clearFields = function() {
 
 		this.find(':input').each(function() {
@@ -20,7 +19,6 @@ jQuery.fn.clearFields = function() {
 };
 
 // Serializa campos para JSON.
-
 jQuery.fn.serializeObject = function() {
 
 	var arrayData, objectData;
@@ -54,7 +52,6 @@ jQuery.fn.serializeObject = function() {
 };
 
 // Método de validação para data
-
 jQuery.validator.addMethod("data", function(value, element) {
 
 	if(value.length!=10) return false;
@@ -74,16 +71,3 @@ jQuery.validator.addMethod("data", function(value, element) {
 		return true;
 
 }, "Informe uma data válida");
-
-// When ready...
-window.addEventListener("load", function() {
-
-	// Set a timeout...
-	setTimeout(function() {
-
-		// Hide the address bar!
-		window.scrollTo(0, 1);
-
-	}, 0);
-
-});

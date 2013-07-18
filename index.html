@@ -1,25 +1,25 @@
 <!DOCTYPE HTML>
-<html lang="en-US">
+<html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 
 	<title>Workout - Log de Exercício</title>
 
 	<link rel="stylesheet" href="stylesheets/styles.css">
 
-	<script type="text/javascript" src="javascripts/jquery.min.js"></script>
-	<script type="text/javascript" src="javascripts/jquery.validate.js"></script>
-	<script type="text/javascript" src="javascripts/jquery.masked.js"></script>
-	<script type="text/javascript" src="javascripts/underscore.min.js"></script>
+	<script type="text/javascript" src="javascripts/vendor/jquery.js"></script>
+	<script type="text/javascript" src="javascripts/vendor/jquery.validate.js"></script>
+	<script type="text/javascript" src="javascripts/vendor/jquery.masked.js"></script>
+	<script type="text/javascript" src="javascripts/vendor/underscore.js"></script>
+	<script type="text/javascript" src="javascripts/vendor/backbone.js"></script>
+	<script type="text/javascript" src="javascripts/vendor/backbone.localstorage.js"></script>
+
 	<script type="text/javascript" src="javascripts/functions.js"></script>
-	<script type="text/javascript" src="javascripts/backbone.min.js"></script>
-	<script type="text/javascript" src="javascripts/backbone.localstorage.js"></script>
+	<script type="text/javascript" src="javascripts/app.js"></script>
 
-	<script type="text/javascript" src="app.js"></script>
-
-</head>
+</head> 
 <body>
 
 	<div id="app">
@@ -65,7 +65,6 @@
 					</fieldset>
 
 					<div id="message"></div>
-
 				</form>
 
 				<table id="activities">
@@ -81,9 +80,7 @@
 				</table>
 
 				<footer id="total-activities">
-					
 					<h2>Você não fez nenhuma atividade ainda!</h2>
-
 				</footer>
 
 			</div>
@@ -115,9 +112,18 @@
 
 	<script type="text/javascript">
 		$(function() {
+
 			new AppView({ el: $('#app') });
+
+			$("#date").mask("99/99/9999");
+
+			$("#new-activity").validate({
+				errorLabelContainer: "#message",
+				focusInvalid: false,
+				onfocusout: false,
+				onkeyup: false
+			});
 		});
-	
 	</script>
 
 </body>

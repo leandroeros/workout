@@ -3,9 +3,11 @@ jQuery.fn.clearFields = function() {
 
 		this.find(':input').each(function() {
 			switch (this.type) {
+			case 'select-one':
+				$(this).find("option:first").attr('selected', 'selected');
+				break;
 			case 'password':
 			case 'select-multiple':
-			case 'select-one':
 			case 'text':
 			case 'textarea':
 				$(this).val('');

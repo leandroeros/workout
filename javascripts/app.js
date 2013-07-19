@@ -31,10 +31,7 @@ var AppView = Backbone.View.extend({
 	},
 
 	render: function() {
-
-		$(this.el).find('#activities tbody').html( _.template($(this.el).find("#activitiesTemplate").html(), {data: Activities.toJSON()} ) );
-
-		this.totalActivities();
+		this.showActivities();
 	},
 
 	registerActivity: function(e) {
@@ -47,14 +44,10 @@ var AppView = Backbone.View.extend({
 
 		Activities.fetch();
 
-		$(this.el).find('#activities tbody').html( _.template($(this.el).find('#activitiesTemplate').html(), {data: Activities.toJSON()} ) );
-
-		// Limpando campos do formulário.
+		// Limpa o formulário.
 		$(this.el).find('#new-activity').clearFields();
-		
-		$(this.el).find("input:text:first").focus();
-		
-		this.totalActivities();
+
+		this.showActivities();
 	},
 
 	deleteActivity: function(e) {
@@ -65,7 +58,14 @@ var AppView = Backbone.View.extend({
 
 		( Activities.get( id ) ).clear();
 
+		this.showActivities();
+	},
+
+	showActivities: function() {
+
 		$(this.el).find('#activities tbody').html( _.template($(this.el).find('#activitiesTemplate').html(), {data: Activities.toJSON()} ) );
+		
+		$(this.el).find("input:text:first").focus();
 
 		this.totalActivities();
 	},
